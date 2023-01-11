@@ -6,19 +6,41 @@ package graph
 
 import (
 	"context"
-	"fmt"
 
+	"github.com/folafunmi-db/go-graphql-mongodb/database"
 	"github.com/folafunmi-db/go-graphql-mongodb/graph/model"
 )
 
-// CreateTodo is the resolver for the createTodo field.
-func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {
-	panic(fmt.Errorf("not implemented: CreateTodo - createTodo"))
+var db = database.Connect()
+
+// CreateJobListing is the resolver for the createJobListing field.
+func (r *mutationResolver) CreateJobListing(ctx context.Context, input model.CreateJobListingInput) (*model.JobListing, error) {
+	return db.CreateJobListing(input), nil
+	// panic(fmt.Errorf("not implemented: CreateJobListing - createJobListing"))
 }
 
-// Todos is the resolver for the todos field.
-func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
-	panic(fmt.Errorf("not implemented: Todos - todos"))
+// UpdateJobListing is the resolver for the updateJobListing field.
+func (r *mutationResolver) UpdateJobListing(ctx context.Context, id string, input model.UpdateJobListingInput) (*model.JobListing, error) {
+	return db.UpdateJobListing(id, input), nil
+	// panic(fmt.Errorf("not implemented: UpdateJobListing - updateJobListing"))
+}
+
+// DeleteJobListing is the resolver for the deleteJobListing field.
+func (r *mutationResolver) DeleteJobListing(ctx context.Context, id string) (*model.DeleteJobListingResponse, error) {
+	return db.DeleteJobListing(id), nil
+	// panic(fmt.Errorf("not implemented: DeleteJobListing - deleteJobListing"))
+}
+
+// Jobs is the resolver for the jobs field.
+func (r *queryResolver) Jobs(ctx context.Context) ([]*model.JobListing, error) {
+	return db.GetJobs, nil
+	// panic(fmt.Errorf("not implemented: Jobs - jobs"))
+}
+
+// Job is the resolver for the job field.
+func (r *queryResolver) Job(ctx context.Context) (*model.JobListing, error) {
+	return db.GetJob(id), nil
+	// panic(fmt.Errorf("not implemented: Job - job"))
 }
 
 // Mutation returns MutationResolver implementation.
