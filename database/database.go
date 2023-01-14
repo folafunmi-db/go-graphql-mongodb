@@ -1,9 +1,13 @@
 package database
 
-import "go.mongodb.org/mongo-driver/mongo"
+import (
+	"os"
+
+	"go.mongodb.org/mongo-driver/mongo"
+)
 
 // dummy cluster on mongodb atlas
-var connectionString = "mongodb+srv://folafunmi:XpZaCsUw08AZgCWz@cluster0.moltryd.mongodb.net/?retryWrites=true&w=majority"
+var connectionString = os.Getenv("BASE_URL")
 
 type DB struct {
 	client *mongo.Client
